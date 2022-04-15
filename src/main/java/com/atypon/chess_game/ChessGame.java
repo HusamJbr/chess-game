@@ -4,21 +4,48 @@ import com.atypon.chess_game.board.ChessBoard;
 import com.atypon.chess_game.board.Spot;
 import com.atypon.chess_game.parser.MovementParser;
 import com.atypon.chess_game.pieces.Color;
-import com.atypon.chess_game.pieces.Piece;
+import com.atypon.chess_game.utility.Move;
 
 public class ChessGame {
     private ChessBoard chessBoard;
     private Player whitePlayer, blackPlayer;
+    private String winnerName;
     private boolean turn;
     ChessGame(String whitePlayerName, String blackPlayerName){
         chessBoard = new ChessBoard();
         whitePlayer = new Player(Color.WHITE, whitePlayerName);
         blackPlayer = new Player(Color.BLACK, blackPlayerName);
         turn = false;
+        winnerName = "";
+        System.out.println(chessBoard);
     }
 
     public boolean isDone(){
-        return true;
+        if(isCheckMated(whitePlayer)){
+           winnerName = whitePlayer.getPlayerName();
+           return true;
+        }else if(isCheckMated(whitePlayer)){
+            winnerName = blackPlayer.getPlayerName();
+            return true;
+        }
+        if(isStealMate(whitePlayer,blackPlayer)){
+            winnerName = "Draw";
+            return true;
+        }
+        return false;
+    }
+
+    /*
+    check if king spot is check and king can't defend him self then its check mated
+     */
+    private boolean isCheckMated(Player player){
+        return false;
+    }
+    /*
+    check if the king spot isn't check and king can't defend himself then it steal mated
+     */
+    private boolean isStealMate(Player whitePlayer, Player blackPlayer){
+        return false;
     }
 
    public boolean isWhiteTurn(){
@@ -35,12 +62,12 @@ public class ChessGame {
         return false;
     }
     private void playAPlayer(Player player, String move){
-        turn^=true; // flip the bit
         MovementParser movementParser = MovementParser.parseString(move);
         Spot from = chessBoard.getSpot(movementParser.getFrom().getX(), movementParser.getFrom().getY());
         Spot to = chessBoard.getSpot(movementParser.getTo().getX(), movementParser.getTo().getY());
         if(isValidMove(player, from, to)){
-
+            turn^=true; // flip the bit
+            Move.move(chessBoard, from, to);
         }else {
             System.out.println("Try again");
         }
@@ -53,7 +80,7 @@ public class ChessGame {
         playAPlayer(blackPlayer, move);
     }
 
-    public void printWinnerName(){
-
+    public String printWinnerName(){
+        return winnerName;
     }
 }

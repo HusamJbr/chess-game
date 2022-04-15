@@ -6,10 +6,15 @@ import java.util.Arrays;
 public class ChessBoard implements Board{
     private int rows,cols;
     private Spot[][] chessBoard;
+    private Coordinates whiteKing, blackKing;
     public ChessBoard(){
        rows=cols=8;
        chessBoard = new Spot[rows][cols];
        init();
+        whiteKing.setX(0);
+        whiteKing.setY(4);
+        blackKing.setX(7);
+        blackKing.setY(4);
     }
 
 
@@ -37,6 +42,10 @@ public class ChessBoard implements Board{
 		}
     }
 
+    /*
+    check if the piece is king then the next spot in not underAttack
+    and check if the piece can't jump then all spots between from and to don't have pieces and so on
+     */
     public boolean canMove(Spot from, Spot to){
         return true;
     }
@@ -57,6 +66,22 @@ public class ChessBoard implements Board{
 
     public void setSpot(Spot spot) {
         chessBoard[spot.getCoordinates().getX()][spot.getCoordinates().getY()] = spot;
+    }
+
+    public Coordinates getWhiteKing() {
+        return whiteKing;
+    }
+
+    public void setWhiteKing(Coordinates whiteKing) {
+        this.whiteKing = whiteKing;
+    }
+
+    public Coordinates getBlackKing() {
+        return blackKing;
+    }
+
+    public void setBlackKing(Coordinates blackKing) {
+        this.blackKing = blackKing;
     }
 
     @Override

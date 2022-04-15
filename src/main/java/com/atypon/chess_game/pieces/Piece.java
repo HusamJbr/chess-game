@@ -23,6 +23,9 @@ public abstract class Piece {
         this.jumpBehaviour = jumpBehaviour;
     }
     public abstract void move();
+    /*
+        check if the piece can perform this move shape
+     */
     public boolean canMove(Spot from, Spot to){
         return movementBehaviour.canMove(from, to);
     }
