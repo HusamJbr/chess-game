@@ -27,4 +27,15 @@ public class Pawn extends Piece{
     public void setHasMoved(boolean hasMoved) {
         this.hasMoved = hasMoved;
     }
+
+
+    @Override
+    public String toString() {
+
+        if(getColor() == Color.WHITE){
+            return "WP";
+        }else{
+            return "BP";
+        }
+    }
 }

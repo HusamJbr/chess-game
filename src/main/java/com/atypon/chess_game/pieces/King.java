@@ -28,4 +28,13 @@ public class King extends Piece{
     public void setHasMoved(boolean hasMoved) {
         this.hasMoved = hasMoved;
     }
+
+    @Override
+    public String toString() {
+        if(getColor() == Color.WHITE){
+            return "WK";
+        }else{
+            return "BK";
+        }
+    }
 }

@@ -1,6 +1,8 @@
 package com.atypon.chess_game.board;
 import com.atypon.chess_game.pieces.*;
 
+import java.util.Arrays;
+
 public class ChessBoard implements Board{
     private int rows,cols;
     private Spot[][] chessBoard;
@@ -57,4 +59,26 @@ public class ChessBoard implements Board{
         chessBoard[spot.getCoordinates().getX()][spot.getCoordinates().getY()] = spot;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder ans = new StringBuilder();
+        ans.append("   ");
+        for(int j = 0; j < chessBoard[0].length; j++){
+            ans.append((char)(j+'A')+"  ");
+        }
+        ans.append("\r\n");
+        ans.append("   ");
+        for(int j = 0; j < chessBoard[0].length; j++){
+            ans.append("---");
+        }
+        ans.append("\r\n");
+        for(int row = 0; row < chessBoard.length; row++) {
+            ans.append(String.valueOf(row+1)+" |");
+            for(int col = 0; col < chessBoard[row].length; col++) {
+                ans.append(chessBoard[row][col].toString()+" ");
+            }
+            ans.append("\r\n");
+        }
+        return ans.toString();
+    }
 }

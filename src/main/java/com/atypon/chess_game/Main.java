@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Main {
   public static void main(String[] args) {
+
     // client code for chess game
       ChessGame game = new ChessGame("fahed", "ahmad"); // fahed is name of white player
                                                                                    // ahmad is name of black player

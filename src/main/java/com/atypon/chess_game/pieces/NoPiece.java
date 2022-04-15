@@ -9,4 +9,9 @@ public class NoPiece extends Piece{
     public void move() {
 
     }
+
+    @Override
+    public String toString() {
+        return "--";
+    }
 }

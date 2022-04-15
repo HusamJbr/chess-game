@@ -25,4 +25,14 @@ public class Knight extends Piece{
     public void setHasMoved(boolean hasMoved) {
         this.hasMoved = hasMoved;
     }
+
+    @Override
+    public String toString() {
+
+        if(getColor() == Color.WHITE){
+            return "WN";
+        }else{
+            return "BN";
+        }
+    }
 }
