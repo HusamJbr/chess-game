@@ -1,5 +1,4 @@
 package com.atypon.games.chess_game;
-
 import com.atypon.board.Spot;
 import com.atypon.pieces.Color;
 
@@ -11,10 +10,6 @@ public class Player {
         this.playerName = playerName;
     }
 
-    /*
-    check if the player king under check then this player can't
-    move anything except the king or something can make king not under attack
-     */
     public boolean canMove(Spot from, Spot to) {
         if(from.getPiece().getColor() != playerColor) {
             return false;

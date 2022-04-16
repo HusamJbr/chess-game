@@ -1,4 +1,4 @@
-package com.atypon.utility;
+package com.atypon.games.chess_game.utility;
 import com.atypon.board.ChessBoard;
 import com.atypon.board.Spot;
 import com.atypon.pieces.*;

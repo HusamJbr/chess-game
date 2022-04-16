@@ -4,7 +4,7 @@ import com.atypon.board.ChessBoard;
 import com.atypon.board.Spot;
 import com.atypon.parser.MovementParser;
 import com.atypon.pieces.Color;
-import com.atypon.utility.ChessMovement;
+import com.atypon.games.chess_game.utility.ChessMovement;
 
 public class ChessGame {
     private ChessBoard chessBoard;
