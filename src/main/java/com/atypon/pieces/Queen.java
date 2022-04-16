@@ -14,17 +14,19 @@ public class Queen extends Piece{
 
     @Override
     public void move() {
-        setHasMoved(true);
+        enableHasMoved();
     }
 
     public boolean getHasMoved() {
         return hasMoved;
     }
 
-    public void setHasMoved(boolean hasMoved) {
-        this.hasMoved = hasMoved;
+    public void enableHasMoved(){
+        this.hasMoved = true;
     }
-
+    public void disableHasMoved(){
+        this.hasMoved = false;
+    }
 
     @Override
     public String toString() {

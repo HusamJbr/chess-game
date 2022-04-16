@@ -12,9 +12,13 @@ public abstract class Piece {
     private MovementBehaviour movementBehaviour;
     private JumpBehaviour jumpBehaviour;
     Piece(Color color){
+        if(color == null)
+            throw new IllegalArgumentException();
         this.color = color;
     }
     public void setMovementBehaviour(MovementBehaviour movementBehaviour){
+        if(movementBehaviour == null)
+            throw new IllegalArgumentException();
         this.movementBehaviour = movementBehaviour;
     }
 
@@ -23,13 +27,19 @@ public abstract class Piece {
     }
 
     public void setJumpBehaviour(JumpBehaviour jumpBehaviour) {
+        if(jumpBehaviour == null)
+            throw new IllegalArgumentException();
         this.jumpBehaviour = jumpBehaviour;
     }
     public abstract void move();
     public boolean canMove(Spot from, Spot to){
+        if(from == null || to == null)
+            throw new IllegalArgumentException();
         return movementBehaviour.canMove(from, to);
     }
     public List<Coordinates> listOfThreateningSpots(Spot spot) {
+        if(spot == null)
+            throw new IllegalArgumentException();
         return movementBehaviour.listOfThreateningSpots(spot);
     }
     public boolean canJump(){

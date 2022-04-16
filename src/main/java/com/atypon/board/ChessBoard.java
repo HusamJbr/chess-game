@@ -40,6 +40,8 @@ public class ChessBoard implements Board{
     }
 
     public void setSpot(Spot spot) {
+        if(spot == null)
+            throw new IllegalArgumentException();
         chessBoard[spot.getCoordinates().getX()][spot.getCoordinates().getY()] = spot;
     }
 

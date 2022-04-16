@@ -17,6 +17,8 @@ public class Spot {
     }
 
     public void setCoordinates(Coordinates coordinates) {
+        if(coordinates == null)
+            throw new IllegalArgumentException();
         this.coordinates = coordinates;
     }
 
@@ -33,6 +35,8 @@ public class Spot {
     }
 
     public void setPiece(Piece piece) {
+        if(piece == null)
+            throw new IllegalArgumentException();
         this.piece = piece;
     }
 

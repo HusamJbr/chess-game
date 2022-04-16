@@ -12,6 +12,8 @@ public class ChessGame {
     private String winnerName;
     private boolean turn;
     public ChessGame(String whitePlayerName, String blackPlayerName){
+        if(whitePlayerName == null || blackPlayerName == null)
+            throw new IllegalArgumentException();
         chessBoard = new ChessBoard();
         whitePlayer = new Player(Color.WHITE, whitePlayerName);
         blackPlayer = new Player(Color.BLACK, blackPlayerName);
@@ -57,12 +59,16 @@ public class ChessGame {
     }
 
     private boolean isValidMove(Player player, Spot from, Spot to){
+        if(player == null || from == null || to == null)
+            throw new IllegalArgumentException();
         if(chessBoard.canMove(from, to) && player.canMove(from, to) && from.getPiece().canMove(from, to)){
             return true;
         }
         return false;
     }
     private void playAPlayer(Player player, String move){
+        if(player == null || move == null)
+            throw new IllegalArgumentException();
         MovementParser movementParser = MovementParser.parseString(move);
         Spot from = chessBoard.getSpot(movementParser.getFrom().getX(), movementParser.getFrom().getY());
         Spot to = chessBoard.getSpot(movementParser.getTo().getX(), movementParser.getTo().getY());
@@ -74,10 +80,14 @@ public class ChessGame {
         }
     }
     public void playWhite( String move){
+        if(move == null)
+            throw new IllegalArgumentException();
         playAPlayer(whitePlayer, move);
     }
 
     public void playBlack( String move ){
+        if(move == null)
+            throw new IllegalArgumentException();
         playAPlayer(blackPlayer, move);
     }
 

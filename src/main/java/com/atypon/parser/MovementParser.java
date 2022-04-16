@@ -26,6 +26,8 @@ public class MovementParser {
     }
 
     private static Coordinates handleSpots(StringTokenizer input){
+        if(input == null)
+            throw new IllegalArgumentException();
         if(!input.hasMoreTokens())
             return new Coordinates(Coordinates.EMPTY,Coordinates.EMPTY);
         String start = input.nextToken();
@@ -36,6 +38,8 @@ public class MovementParser {
         return new Coordinates(x,y);
     }
     private static Command handleCommand(StringTokenizer input){
+        if(input == null)
+            throw new IllegalArgumentException();
         if(!input.hasMoreTokens())
             return Command.EMPTY;
         String command = input.nextToken();
@@ -50,14 +54,20 @@ public class MovementParser {
     }
 
     public void setCommand(Command command) {
+        if(command == null)
+            throw new IllegalArgumentException();
         this.command = command;
     }
 
     public void setFrom(Coordinates from) {
+        if(from == null)
+            throw new IllegalArgumentException();
         this.from = from;
     }
 
     public void setTo(Coordinates to) {
+        if(to == null)
+            throw new IllegalArgumentException();
         this.to = to;
     }
 

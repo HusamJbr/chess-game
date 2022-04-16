@@ -16,7 +16,7 @@ public class King extends Piece{
 
     @Override
     public void move() {
-        setHasMoved(true);
+        enableHasMoved();
         if(getMovementBehaviour() instanceof AroundAndTwoHorizontally)
             setMovementBehaviour(new AroundAndOneHorizontally());
     }
@@ -25,10 +25,12 @@ public class King extends Piece{
         return hasMoved;
     }
 
-    public void setHasMoved(boolean hasMoved) {
-        this.hasMoved = hasMoved;
+    public void enableHasMoved(){
+        this.hasMoved = true;
     }
-
+    public void disableHasMoved(){
+        this.hasMoved = false;
+    }
     @Override
     public String toString() {
         if(getColor() == Color.WHITE){

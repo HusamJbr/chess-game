@@ -11,7 +11,7 @@ public class Main {
       ChessGame game = new ChessGame("fahed", "ahmad"); // fahed is name of white player
                                                                                    // ahmad is name of black player
       while(!game.isDone()){
-          String move = readMoveFromConsole(); // e.g., "move B8 C6"
+          String move = read_move_from_console(); // e.g., "move B8 C6"
           if(game.isWhiteTurn())
               game.playWhite( move );
           else
@@ -20,7 +20,7 @@ public class Main {
       game.printWinnerName();
   }
 
-  public static String readMoveFromConsole(){
+  public static String read_move_from_console(){
       Scanner sc = new Scanner(System.in);
       return sc.nextLine();
   }

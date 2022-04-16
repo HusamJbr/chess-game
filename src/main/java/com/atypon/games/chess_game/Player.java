@@ -11,6 +11,8 @@ public class Player {
     }
 
     public boolean canMove(Spot from, Spot to) {
+        if(from == null || to == null)
+            throw new IllegalArgumentException();
         if(from.getPiece().getColor() != playerColor) {
             return false;
         }
@@ -22,6 +24,8 @@ public class Player {
     }
 
     public void setPlayerColor(Color playerColor) {
+        if(playerColor == null)
+            throw new IllegalArgumentException();
         this.playerColor = playerColor;
     }
 
@@ -30,6 +34,8 @@ public class Player {
     }
 
     public void setPlayerName(String playerName) {
+        if(playerName == null)
+            throw new IllegalArgumentException();
         this.playerName = playerName;
     }
 }
