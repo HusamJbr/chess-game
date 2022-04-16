@@ -4,13 +4,10 @@ import com.atypon.pieces.*;
 public class ChessBoard implements Board{
     private int rows,cols;
     private Spot[][] chessBoard;
-    private Coordinates whiteKing, blackKing;
     public ChessBoard(){
        rows=cols=8;
        chessBoard = new Spot[rows][cols];
        init();
-       whiteKing = new Coordinates(0,4);
-       blackKing = new Coordinates(7,4);
     }
 
 
@@ -62,22 +59,6 @@ public class ChessBoard implements Board{
 
     public void setSpot(Spot spot) {
         chessBoard[spot.getCoordinates().getX()][spot.getCoordinates().getY()] = spot;
-    }
-
-    public Coordinates getWhiteKing() {
-        return whiteKing;
-    }
-
-    public void setWhiteKing(Coordinates whiteKing) {
-        this.whiteKing = whiteKing;
-    }
-
-    public Coordinates getBlackKing() {
-        return blackKing;
-    }
-
-    public void setBlackKing(Coordinates blackKing) {
-        this.blackKing = blackKing;
     }
 
     @Override

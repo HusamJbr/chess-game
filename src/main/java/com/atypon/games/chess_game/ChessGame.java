@@ -4,7 +4,7 @@ import com.atypon.board.ChessBoard;
 import com.atypon.board.Spot;
 import com.atypon.parser.MovementParser;
 import com.atypon.pieces.Color;
-import com.atypon.utility.Move;
+import com.atypon.utility.ChessMovement;
 
 public class ChessGame {
     private ChessBoard chessBoard;
@@ -16,7 +16,7 @@ public class ChessGame {
         whitePlayer = new Player(Color.WHITE, whitePlayerName);
         blackPlayer = new Player(Color.BLACK, blackPlayerName);
         turn = false;
-        winnerName = "";
+        winnerName = "No One";
         System.out.println(chessBoard);
     }
 
@@ -28,7 +28,7 @@ public class ChessGame {
             winnerName = blackPlayer.getPlayerName();
             return true;
         }
-        if(isStealMate(whitePlayer,blackPlayer)){
+        if(isStealMate(whitePlayer) || isStealMate(blackPlayer)){
             winnerName = "Draw";
             return true;
         }
@@ -36,15 +36,16 @@ public class ChessGame {
     }
 
     /*
+    From player color get the king and
     check if king spot is check and king can't defend him self then its check mated
      */
     private boolean isCheckMated(Player player){
         return false;
     }
     /*
-    check if the king spot isn't check and king can't defend himself then it steal mated
+    check if the king spot isn't check and king can't defend himself then it's staleMate
      */
-    private boolean isStealMate(Player whitePlayer, Player blackPlayer){
+    private boolean isStealMate(Player player){
         return false;
     }
 
@@ -67,7 +68,7 @@ public class ChessGame {
         Spot to = chessBoard.getSpot(movementParser.getTo().getX(), movementParser.getTo().getY());
         if(isValidMove(player, from, to)){
             turn^=true; // flip the bit
-            Move.move(chessBoard, from, to);
+            ChessMovement.move(chessBoard, from, to);
         }else {
             System.out.println("Try again");
         }

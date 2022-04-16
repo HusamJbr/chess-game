@@ -3,20 +3,20 @@ import com.atypon.board.ChessBoard;
 import com.atypon.board.Spot;
 import com.atypon.pieces.*;
 
-public class Move {
+public class ChessMovement {
 
-    private static void ifCastlingPerform(ChessBoard chessBoard,Spot from, Spot to){
+    private static void ifCastlingThenPerform(ChessBoard chessBoard, Spot from, Spot to){
         if(from.getPiece() instanceof King){
            if(Math.abs(from.getCoordinates().getY()-to.getCoordinates().getY()) == 2){
               if(to.getCoordinates().getY() > from.getCoordinates().getY()) { // kingSide castling
-                    performMove(chessBoard.getSpot(from.getCoordinates().getX(),7), chessBoard.getSpot(from.getCoordinates().getX(),5));
+                    performMove(chessBoard, chessBoard.getSpot(from.getCoordinates().getX(),7), chessBoard.getSpot(from.getCoordinates().getX(),5));
               }else{ // queenSide castling
-                    performMove(chessBoard.getSpot(from.getCoordinates().getX(),0), chessBoard.getSpot(from.getCoordinates().getX(), 3));
+                    performMove(chessBoard, chessBoard.getSpot(from.getCoordinates().getX(),0), chessBoard.getSpot(from.getCoordinates().getX(), 3));
               }
            }
         }
     }
-    private static void ifPromotionPerform(Spot from, Spot to){
+    private static void ifPromotionThenPerform(Spot from, Spot to){
         if(from.getPiece() instanceof Pawn){
            if(from.getPiece().getColor() == Color.WHITE
                    && from.getCoordinates().getX() == 6 && to.getCoordinates().getX() == 7){ // it's a promotion
@@ -27,7 +27,7 @@ public class Move {
            }
         }
     }
-    private static void performMove(Spot from, Spot to){
+    private static void performMove(ChessBoard chessBoard, Spot from, Spot to){
         to.setPiece(from.getPiece());
         to.getPiece().move();
         /*
@@ -36,17 +36,11 @@ public class Move {
         from.setPiece(new NoPiece());
     }
     public static void move(ChessBoard chessBoard, Spot from, Spot to){
-        if(from.getPiece() instanceof King){
-            if(from.getPiece().getColor() == Color.WHITE){
-                chessBoard.setWhiteKing(to.getCoordinates());
-            }else{
-                chessBoard.setBlackKing(to.getCoordinates());
-            }
-        }
-        ifCastlingPerform(chessBoard, from, to);
-        ifPromotionPerform(from, to);
-        performMove(from, to);
+        ifCastlingThenPerform(chessBoard, from, to);
+        ifPromotionThenPerform(from, to);
+        performMove(chessBoard, from, to);
         System.out.println();
         System.out.println(chessBoard);
     }
+
 }

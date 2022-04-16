@@ -8,17 +8,21 @@ public class MovementParser {
     }
     private Command command;
     private Coordinates from,to;
-    private MovementParser(Command command, Coordinates from, Coordinates to){
-        this.command = command;
-        this.from = from;
-        this.to = to;
+    private static final MovementParser INSTANCE = new MovementParser();
+    private MovementParser(){
+        this.command = Command.EMPTY;
+        this.from = new Coordinates(Coordinates.EMPTY,Coordinates.EMPTY);
+        this.to = new Coordinates(Coordinates.EMPTY,Coordinates.EMPTY);
     }
 
     public static MovementParser parseString(String move) {
         if(move == null)
             throw new IllegalArgumentException();
         StringTokenizer stringTokenizer = new StringTokenizer(move," ");
-        return new MovementParser(handleCommand(stringTokenizer), handleSpots(stringTokenizer), handleSpots(stringTokenizer));
+        INSTANCE.setCommand(handleCommand(stringTokenizer));
+        INSTANCE.setFrom(handleSpots(stringTokenizer));
+        INSTANCE.setTo(handleSpots(stringTokenizer));
+        return INSTANCE;
     }
 
     private static Coordinates handleSpots(StringTokenizer input){
@@ -43,6 +47,18 @@ public class MovementParser {
             default:
                 return Command.EMPTY;
         }
+    }
+
+    public void setCommand(Command command) {
+        this.command = command;
+    }
+
+    public void setFrom(Coordinates from) {
+        this.from = from;
+    }
+
+    public void setTo(Coordinates to) {
+        this.to = to;
     }
 
     public boolean hasCommand(){
